@@ -1,0 +1,39 @@
+
+
+<!--[3.2b]-->
+<mat-card class="rest-card">
+  <mat-card-header>
+    <mat-card-title>{{restaurant.name | uppercase}}</mat-card-title>
+    <mat-card-subtitle *ngIf="restaurant.phone || restaurant.website">
+      <span *ngIf="restaurant.phone"> t: <a href="tel:{{restaurant.phone}}">{{restaurant.phone}}</a></span>
+
+      <span *ngIf="restaurant.website"> w: <a href="{{restaurant.website}}" target="_blank">{{restaurant.name | lowercase}}</a></span>
+
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p *ngIf="restaurant.rating">Rating: {{restaurant.rating}}</p>
+    <p *ngIf="restaurant.location.streetNumber">Street Number: {{restaurant.location.streetNumber}}</p>
+    <p *ngIf="restaurant.location.streetName">Street Name: {{restaurant.location.streetName}}</p>
+    <p *ngIf="restaurant.location.city">City: {{restaurant.location.city}}</p>
+    <p *ngIf="restaurant.location.province">Province: {{restaurant.location.province}}</p>
+
+  </mat-card-content>
+
+  <u><mat-card-title >Reviews</mat-card-title></u>
+
+
+  <!--For the individual Review - no array-->
+  <p *ngIf="restaurant.reviews.author">Author: {{restaurant.reviews.author}}</p>
+  <p *ngIf="restaurant.reviews.body">Message: {{restaurant.reviews.body}}</p>
+  <!--******************************************-->
+
+
+  <!--Looping through the Review array-->
+  <div *ngFor="let review of restaurant.reviews">
+    <span>Author: {{review.author}}</span>
+    <span>Message: {{review.body}}</span>
+  </div>
+
+
+</mat-card>
